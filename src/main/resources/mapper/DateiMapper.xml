@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="spring.webapp.loginsystem.persistence.mapper.DateiMapper">
+
+	<resultMap id="dateiResult" type="Datei">
+		<id column="ID" property="id" />
+		<result column="NAME" property="name" />
+		<result column="BESCHREIBUNG" property="beschreibung" />
+		<result column="TYP" property="typ" />
+	</resultMap>
+	
+	<!-- Select -->
+	<select id="selectDateiByDateiId" parameterType="java.lang.Long"
+		resultMap="dateiResult">
+		SELECT ID, NAME, BESCHREIBUNG, TYP
+		FROM DATEI
+		WHERE ID = #{id}
+	</select>
+
+	<!-- Select -->
+	<select id="selectDateiByDateinameAndTyp" resultMap="dateiResult">
+		SELECT ID,
+		NAME, BESCHREIBUNG, TYP
+		FROM DATEI
+		WHERE NAME = #{name} AND TYP = #{typ}
+	</select>
+	
+		<!-- Select -->
+	<select id="selectDateienByKursId" parameterType="java.lang.String"
+		resultMap="dateiResult">
+		SELECT DT.ID, DT.NAME, DT.BESCHREIBUNG, DT.TYP
+		FROM DATEI DT,
+		DATAI_KURS_PROFESSOR DKP
+		WHERE DT.ID = DKP.DATEI_ID AND DKP.KURS_ID = #{kursId}
+	</select>
+	
+	<!-- Insert -->
+	<insert id="insertDatei" parameterType="Datei" useGeneratedKeys="true"
+		keyProperty="id" keyColumn="id">
+		<selectKey resultType="long" keyProperty="id" order="BEFORE">
+			SELECT
+			DATEI_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO DATEI (ID, NAME, BESCHREIBUNG, TYP)
+		VALUES
+		(#{id},
+		#{name},#{beschreibung},#{typ})
+	</insert>
+
+	<!-- Update -->
+	<update id="updateDatei" parameterType="Datei">
+		UPDATE DATEI set NAME =
+		#{name}, BESCHREIBUNG = #{beschreibung}, TYP = #{typ}
+		WHERE ID = #{id}
+	</update>
+
+	<!-- Delete -->
+	<delete id="deleteDatei" parameterType="java.lang.Long">
+		DELETE from DATEI where
+		ID = #{id}
+	</delete>
+</mapper>

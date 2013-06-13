@@ -1,0 +1,141 @@
+body {
+	font-family: Arial, sans-serif, Verdana, Helvetica;
+	width: 800px;
+	margin: auto;
+}
+
+h1,hr {
+	margin: 0px;
+	padding: 0px;
+}
+
+#banner {
+	display: block;
+}
+
+#username {
+	color: red;
+	font-weight: bold;
+}
+
+#menu-username {
+	color: black;
+	float: right;
+	margin-top: 10px;
+	margin-right: 10px;
+}
+
+.message {
+	color: red;
+	text-align: center;
+}
+
+.login-form {
+	/* 	background-color: #692; */
+	color: black;
+	padding: 5px;
+	width: auto;
+	/* 	width: 300px;
+ */
+	height: 160px;
+	margin: auto;
+	text-align: center;
+	margin-top: 10px;
+}
+
+.login-form fieldset {
+	border: 1px solid green;
+}
+
+.login-form legend {
+	margin: 0px;
+	padding: 0px;
+	text-align: left;
+}
+
+.login-form hr {
+	height: 1px;
+	border: 0px;
+	border-top: 1px solid black;
+}
+
+.login-form input {
+	float: right;
+}
+
+/**
+* CSS of page-header
+*/
+#page-header {
+	/* background:
+		url(/theme/image.php/westfaelische_hs/theme/1370517111/westfaelische_hs/rainbow) 
+		no-repeat left #fff;*/
+	border-radius: 0;
+	max-height: 106px;
+	background-color: #E3DFD4;
+}
+
+.headermenu {
+	float: right;
+	font-size: 90%;
+	line-height: 1.7em;
+	position: relative;
+	right: 0;
+	text-align: right;
+	top: 0;
+}
+
+#headerlogo {
+	float: right;
+}
+
+/**
+* CSS of menu part
+*/
+.menu {
+	width: auto;
+	background-color: #692;
+	clear: both;
+}
+
+.menu ul {
+	margin: 0;
+	padding: 0;
+	float: left;
+}
+
+.menu ul li {
+	display: inline;
+}
+
+.menu ul li a {
+	float: left;
+	text-decoration: none;
+	color: white;
+	padding: 10.5px 11px;
+	background-color: #692;
+}
+
+.menu ul li a:visited {
+	color: white;
+}
+
+.menu ul li a:hover,.menu ul li .current {
+	color: #fff;
+	background-color: #0b75b2;
+}
+
+#login {
+	width: 300px;
+	height: 600px;
+	float: right;
+}
+
+#content {
+	width: 500px;
+	float: left;
+}
+
+#container {
+	width: 800px
+}

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="spring.webapp.loginsystem.persistence.mapper.DateiKursProfessorMapper">
+
+	<resultMap id="DateiKursProfessorResult" type="DateiKursProfessor">
+		<id column="DATEI_ID" property="dateiId" />
+		<id column="KURS_ID" property="kursId" />
+		<id column="PROFESSOR_ID" property="professorId" />
+	</resultMap>
+
+	<!-- Select -->
+	<select id="selectByDateiId" parameterType="java.lang.Long"
+		resultMap="DateiKursProfessorResult">
+		SELECT DATEI_ID, KURS_ID, PROFESSOR_ID
+		FROM DATAI_KURS_PROFESSOR
+		WHERE DATEI_ID = #{dateiId}
+	</select>
+	
+	<!-- Select -->
+	<select id="selectByDateiKursProfessor" resultMap="DateiKursProfessorResult">
+		SELECT DATEI_ID, KURS_ID, PROFESSOR_ID
+		FROM DATAI_KURS_PROFESSOR
+		WHERE DATEI_ID = #{dateiId} AND KURS_ID = #{kursId} AND PROFESSOR_ID = #{professorId} 
+	</select>
+
+	<!-- Select -->
+	<select id="selectByKursId" parameterType="java.lang.String"
+		resultMap="DateiKursProfessorResult">
+		SELECT DATEI_ID, KURS_ID, PROFESSOR_ID
+		FROM DATAI_KURS_PROFESSOR
+		WHERE KURS_ID = #{kursId}
+	</select>
+
+	<!-- Insert -->
+	<insert id="insertDateiKursProfessor">
+		INSERT INTO DATAI_KURS_PROFESSOR (DATEI_ID, KURS_ID, PROFESSOR_ID)
+		VALUES (#{dateiId}, #{kursId}, #{professorId})
+	</insert>
+
+	<!-- Update -->
+	<update id="updateDateiKursProfessor">
+		UPDATE DATAI_KURS_PROFESSOR
+		SET DATEI_ID = #{dateiId}, KURS_ID = #{kursId}
+		WHERE DATEI_ID = #{dateiId} AND KURS_ID = #{kursId}
+	</update>
+
+	<!-- Delete -->
+	<delete id="deleteDateiKursProfessor">
+		DELETE FROM
+		DATAI_KURS_PROFESSOR
+		WHERE DATEI_ID = #{dateiId} AND KURS_ID = #{kursId}
+	</delete>
+</mapper>

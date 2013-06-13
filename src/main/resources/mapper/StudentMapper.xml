@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="spring.webapp.loginsystem.persistence.mapper.StudentMapper">
+
+<resultMap id="studentResult" type="Student">
+	<id column="STUDENT_ID" property="id"/>
+	<result column="STUDENT_NAME" property="name"/>
+	<result column="EMAIL" property="email"/>
+	<result column="SEMESTER_NR" property="semesterNummber"/>
+	<result column="KENNWORT" property="kennwort"/>
+	<result column="FACHRICHTUNG_ID" property="fachrichtung"/>
+	<result column="GESCHLECHT" property="geschlecht"/>
+	<collection property="kurse" column="STUDENT_ID" ofType='Kurs' resultMap="KursResultMap"  />
+	<collection property="fachbereich" column="STUDENT_ID" ofType='Fachbereich' resultMap="FachbereichResultMap" />
+</resultMap>
+
+<resultMap type="Kurs" id="KursResultMap">
+	<id property="kursId" column="KURS_ID"/>
+	<result property="title" column="KURS_TITEL"/> 
+	<result column="ABKUERZUNG" property="abkuerzung"/>
+	<result column="LEISTUNGSPUNKTE" property="leistungspunkte"/>
+	<result column="VERANSTALTUNGSFORM" property="veranstaltungsform"/>
+	<result column="TURNUS" property="turnus"/>
+	<result column="KENNWORT" property="kennwort"/>
+</resultMap>
+
+<resultMap type="Fachbereich" id="FachbereichResultMap">
+	<id property="fachId" column="FACHBEREICH_ID"/>
+	<result property="fachName" column="FACHBEREICH_NAME"/> 
+</resultMap>
+
+	<!-- Select -->
+	<select id="selectStudentByEmail" parameterType="java.lang.String" resultMap="studentResult">
+		SELECT ST.STUDENT_ID, STUDENT_NAME, ST.EMAIL, ST.SEMESTER_NR, ST.KENNWORT
+		FROM STUDENT ST
+		WHERE ST.EMAIL = #{email}
+	</select>
+	
+	<select id="selectStudentById" parameterType="java.lang.String" resultMap="studentResult">
+		SELECT ST.STUDENT_ID, STUDENT_NAME, ST.EMAIL, ST.SEMESTER_NR, ST.KENNWORT
+		FROM STUDENT ST
+		WHERE STUDENT_ID = #{id}
+	</select>
+	
+<!-- 	<select id="selectStudentById" parameterType="long" resultMap="studentResult">
+		SELECT ST.STUDENT_ID, ST.STUDENT_NAME, ST.EMAIL, ST.SEMESTER_NR, ST.KENNWORT, ST.FACHRICHTUNG_ID, ST.GESCHLECHT,
+			FB.FACHBEREICH_ID, FB.FACHBEREICH_NAME, K.KURS_ID, K.KURS_TITEL, K.ABKUERZUNG, K.LEISTUNGSPUNKTE, K.VERANSTALTUNGSFORM, K.TURNUS
+		FROM STUDENT ST
+		    left outer join STUDENT_FACHBEREICH SF on ST.STUDENT_ID = SF.STUDENT_ID
+		    left outer join FACHBEREICH FB on SF.FB_ID = FB.FACHBEREICH_ID
+		    left outer join KURS_SELEKTION KS on ST.STUDENT_ID = KS.STUDENT_ID
+		    left outer join KURS K on KS.KURS_ID = K.KURS_ID
+		WHERE ST.STUDENT_ID = #{id}
+	</select> -->
+	
+	<select id="selectStudentInfosById" parameterType="long" resultMap="studentResult">
+		SELECT ST.STUDENT_ID, ST.STUDENT_NAME, ST.EMAIL, ST.SEMESTER_NR, ST.KENNWORT, ST.FACHRICHTUNG_ID, ST.GESCHLECHT,
+			FB.FACHBEREICH_ID, FB.FACHBEREICH_NAME, K.KURS_ID, K.KURS_TITEL, K.ABKUERZUNG, K.LEISTUNGSPUNKTE, K.VERANSTALTUNGSFORM, K.TURNUS
+		FROM STUDENT ST, STUDENT_FACHBEREICH SF, FACHBEREICH FB, KURS_STUDENT KS, KURS K
+		WHERE ST.STUDENT_ID = SF.STUDENT_ID AND SF.FB_ID = FB.FACHBEREICH_ID AND KS.STUDENT_ID = ST.STUDENT_ID AND KS.KURS_ID = K.KURS_ID 
+		     AND ST.STUDENT_ID = #{id}
+	</select>
+	
+	<!-- Insert -->
+	<insert id="insertStudent" parameterType="Student">
+		INSERT INTO STUDENT (STUDENT_ID, STUDENT_NAME, EMAIL, SEMESTER_NR, KENNWORT, FACHRICHTUNG_ID, GESCHLECHT)
+		VALUES (#{id},#{name},#{email},#{semesterNummber, jdbcType=NUMERIC},#{kennwort},#{fachrichtung},#{geschlecht})
+	</insert>
+	
+	<insert id="insertProfessor" parameterType="Professor">
+		INSERT INTO STUDENT (STUDENT_ID, STUDENT_NAME, EMAIL, SEMESTER_NR, KENNWORT, FACHRICHTUNG_ID, GESCHLECHT)
+		VALUES (#{id},#{name},#{email},#{semesterNummber, jdbcType=NUMERIC},#{kennwort},#{fachrichtung},#{geschlecht})
+	</insert>
+	
+	<!-- Update -->
+	<update id="updateStudent" parameterType="Student">	
+		update STUDENT set STUDENT_ID = #{id}, STUDENT_NAME = #{name}, EMAIL = #{email}
+	</update>
+	
+	<update id="updateProfessor" parameterType="Student">	
+		update PROFESSOR set PROFESSOR_ID = #{id}, PROFESSOR_NAME = #{name}, EMAIL = #{email}
+	</update>
+	
+	<!-- Delete -->
+	<delete id="deleteStudent" parameterType="java.lang.Integer">
+		delete from STUDENT where STUDENT_ID = #{id}
+	</delete>
+	<delete id="deletec" parameterType="java.lang.Integer">
+		delete from PROFESSOR where PROFESSOR_ID = #{id}
+	</delete>
+</mapper>

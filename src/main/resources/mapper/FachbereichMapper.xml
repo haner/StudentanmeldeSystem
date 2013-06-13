@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="spring.webapp.loginsystem.persistence.mapper.FachbereichMapper">
+
+<resultMap id="fachbereichResult" type="Fachbereich">
+	<id column="FACHBEREICH_ID" property="fachId"/>
+	<result column="FACHBEREICH_NAME" property="fachName"/>
+	<result column="BESCHREIBUNG" property="beschreibung"/>
+	<result column="DEKAN" property="dekan"/>
+	<result column="PRODEKAN" property="prodekan"/>
+</resultMap>
+
+	<!-- Select -->
+	<select id="selectFachbereich" resultMap="fachbereichResult">
+		SELECT FACHBEREICH_ID, FACHBEREICH_NAME, BESCHREIBUNG, DEKAN, PRODEKAN
+		FROM FACHBEREICH
+	</select>
+	
+	<select id="selectFachbereichById" parameterType="java.lang.Long" resultMap="fachbereichResult">
+		SELECT FACHBEREICH_ID, FACHBEREICH_NAME, BESCHREIBUNG, DEKAN, PRODEKAN
+		FROM FACHBEREICH
+		WHERE FACHBEREICH_ID= #{fbId}
+	</select>
+		
+	<!-- Insert -->
+	<insert id="insertFachbereich" parameterType="Fachbereich">
+		INSERT INTO FACHBEREICH (FACHBEREICH_ID, FACHBEREICH_NAME, BESCHREIBUNG, DEKAN, PRODEKAN)
+		VALUES (#{fbId},#{name},#{beschreibung},#{dekan},#{prodekan})
+	</insert>
+	
+	<!-- Update -->
+	<update id="updateFachbereich" parameterType="Fachbereich">	
+		UPDATE FACHBEREICH 
+        SET FACHBEREICH_ID = #{fbId}, FACHBEREICH_NAME = #{name}, BESCHREIBUNG = #{beschreibung}, 
+		DEKAN = #{dekan}, PRODEKAN = #{prodekan}
+	</update>
+	
+	<!-- Delete -->
+	<delete id="deleteFachbereich" parameterType="java.lang.Long">
+		DELETE FROM FACHBEREICH where FACHBEREICH_ID = #{fbId}
+	</delete>
+
+</mapper>

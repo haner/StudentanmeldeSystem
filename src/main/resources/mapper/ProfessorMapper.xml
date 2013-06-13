@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="spring.webapp.loginsystem.persistence.mapper.ProfessorMapper">
+
+<resultMap id="professorResult" type="Professor">
+	<id column="PROFESSOR_ID" property="id"/>
+	<result column="PROFESSOR_NAME" property="name"/>
+	<result column="EMAIL" property="email"/>
+	<result column="KENNWORT" property="kennwort"/>
+	<result column="FACHRICHTUNG_ID" property="fachrichtung"/>
+	<result column="GESCHLECHT" property="geschlecht"/>
+	<collection property="kurse" column="PROFESSOR_ID" ofType='Kurs' resultMap="KursResultMap" />
+	<collection property="fachbereich" column="PROFESSOR_ID" ofType='Fachbereich' resultMap="FachbereichResultMap" />
+</resultMap>
+
+<resultMap type="Kurs" id="KursResultMap">
+	<id property="kursId" column="KURS_ID"/>
+	<result property="title" column="KURS_TITEL"/>
+	<result column="ABKUERZUNG" property="abkuerzung"/>
+	<result column="LEISTUNGSPUNKTE" property="leistungspunkte"/>
+	<result column="VERANSTALTUNGSFORM" property="veranstaltungsform"/>
+	<result column="TURNUS" property="turnus"/>
+	<result column="KENNWORT" property="kennwort"/>
+</resultMap>
+
+<resultMap type="Fachbereich" id="FachbereichResultMap">
+	<id property="fachId" column="FACHBEREICH_ID"/>
+	<result property="fachName" column="FACHBEREICH_NAME"/> 
+</resultMap>
+
+	<!-- Select -->
+	<select id="selectProfessorByEmail" parameterType="java.lang.String" resultMap="professorResult">
+		SELECT PROFESSOR_ID, PROFESSOR_NAME, EMAIL, KENNWORT, GESCHLECHT
+		FROM PROFESSOR
+		WHERE EMAIL = #{email}
+	</select>
+	
+<!-- 	<select id="selectProfessorById" parameterType="long" resultMap="professorResult">
+		SELECT PRO.PROFESSOR_ID, PRO.PROFESSOR_NAME, PRO.EMAIL, PRO.KENNWORT, PRO.GESCHLECHT,
+			FB.FACHBEREICH_ID, FB.FACHBEREICH_NAME, K.KURS_ID, K.KURS_TITEL, K.VERANSTALTUNGSFORM, 
+			K.TURNUS, K.KENNWORT
+		FROM PROFESSOR PRO
+		    left outer join PROFESSOR_FACHBEREICH PF on PRO.PROFESSOR_ID = PF.PROFESSOR_ID
+		    left outer join FACHBEREICH FB on PF.FB_ID = FB.FACHBEREICH_ID
+		    left outer join KURS_PROFESSOR KP on PRO.PROFESSOR_ID = KP.PROFESSOR_ID
+		    left outer join KURS K on KP.KURS_ID = K.KURS_ID
+		WHERE PRO.PROFESSOR_ID = #{id}
+	</select> -->
+	
+	<select id="selectProfessorById" parameterType="long" resultMap="professorResult">
+		SELECT PRO.PROFESSOR_ID, PRO.PROFESSOR_NAME, PRO.EMAIL, PRO.KENNWORT, PRO.GESCHLECHT,
+			   FB.FACHBEREICH_ID, FB.FACHBEREICH_NAME, K.KURS_ID, K.KURS_TITEL, K.ABKUERZUNG, K.LEISTUNGSPUNKTE, K.VERANSTALTUNGSFORM, K.TURNUS, K.KENNWORT
+		FROM PROFESSOR PRO, PROFESSOR_FACHBEREICH PRO_FA, FACHBEREICH FB, KURS_PROFESSOR KR_PRO, KURS K
+		WHERE PRO.PROFESSOR_ID = PRO_FA.PROFESSOR_ID AND PRO_FA.FB_ID = FB.FACHBEREICH_ID AND PRO.PROFESSOR_ID = KR_PRO.professor_id
+			  AND K.KURS_ID = KR_PRO.KURS_ID AND PRO.PROFESSOR_ID = 9001
+	</select>
+	
+	<!-- Insert -->	
+	<insert id="insertProfessor" parameterType="Professor">
+		INSERT INTO PROFESSOR (PROFESSOR_ID, PROFESSOR_NAME, EMAIL, KENNWORT, FACHRICHTUNG_ID, GESCHLECHT)
+		VALUES (#{id},#{name},#{email},#{kennwort},#{fachrichtung},#{geschlecht})
+	</insert>
+	
+	<!-- Update -->
+	<update id="updateProfessor" parameterType="Professor">	
+		update PROFESSOR set PROFESSOR_ID = #{id}, PROFESSOR_NAME = #{name}, EMAIL = #{email}
+	</update>
+	
+	<!-- Delete -->
+	<delete id="deleteProfessor" parameterType="java.lang.Integer">
+		delete from PROFESSOR where PROFESSOR_ID = #{id}
+	</delete>
+</mapper>

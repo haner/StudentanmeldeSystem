@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<settings>
+		<!-- changes from the defaults -->
+		<setting name="lazyLoadingEnabled" value="false" />
+	</settings>
+
+	<typeAliases>
+		<typeAlias alias="Student" type="spring.webapp.loginsystem.entity.Student" />
+		<typeAlias alias="Professor"
+			type="spring.webapp.loginsystem.entity.Professor" />
+		<typeAlias alias="Kurs" type="spring.webapp.loginsystem.entity.Kurs" />
+		<typeAlias alias="Fachbereich"
+			type="spring.webapp.loginsystem.entity.Fachbereich" />
+		<typeAlias alias="Professor"
+			type="spring.webapp.loginsystem.entity.Professor" />
+		<typeAlias alias="Datei" type="spring.webapp.loginsystem.entity.Datei" />
+		<typeAlias alias="DateiKursProfessor"
+			type="spring.webapp.loginsystem.entity.DateiKursProfessor" />
+		<typeAlias alias="Fachbereich"
+			type="spring.webapp.loginsystem.entity.Fachbereich" />
+	</typeAliases>
+
+	<mappers>
+		<mapper resource="mapper/StudentMapper.xml" />
+		<mapper resource="mapper/ProfessorMapper.xml" />
+		<mapper resource="mapper/KursMapper.xml" />
+		<mapper resource="mapper/DateiMapper.xml" />
+		<mapper resource="mapper/DateiKursProfessorMapper.xml" />
+		<mapper resource="mapper/FachbereichMapper.xml" />
+
+	</mappers>
+</configuration>

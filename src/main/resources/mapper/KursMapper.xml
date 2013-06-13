@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="spring.webapp.loginsystem.persistence.mapper.KursMapper">
+
+<resultMap id="kursResult" type="Kurs">
+	<id column="KURS_ID" property="kursId"/>
+	<result column="KURS_TITEL" property="title"/>
+	<result column="ABKUERZUNG" property="abkuerzung"/>
+	<result column="LEISTUNGSPUNKTE" property="leistungspunkte"/>
+	<result column="VERANSTALTUNGSFORM" property="veranstaltungsform"/>
+	<result column="TURNUS" property="turnus"/>
+	<result column="KENNWORT" property="kennwort"/>
+</resultMap>
+
+	<!-- Select -->
+	<select id="selectKursByKursId" parameterType="java.lang.String" resultMap="kursResult">
+		SELECT KURS_ID, KURS_TITEL, ABKUERZUNG, LEISTUNGSPUNKTE, VERANSTALTUNGSFORM, TURNUS, KENNWORT
+		FROM KURS
+		WHERE KURS_ID= #{kursId}
+	</select>
+	
+	<select id="selectKurse" resultMap="kursResult">
+		SELECT KURS_ID, KURS_TITEL, ABKUERZUNG, LEISTUNGSPUNKTE, VERANSTALTUNGSFORM, TURNUS, KENNWORT
+		FROM KURS
+	</select>
+	
+	<select id="selectKurseInFB" resultMap="kursResult">
+		SELECT K.KURS_ID, K.KURS_TITEL, K.ABKUERZUNG, K.LEISTUNGSPUNKTE, K.VERANSTALTUNGSFORM, K.TURNUS, K.KENNWORT
+		FROM KURS_FACHBEREICH KF, KURS K
+		WHERE K.KURS_ID = KF.KURS_ID AND KF.FB_ID=#{fachbreichId}
+	</select>
+	
+	<select id="selectProfessorFromKursProfessor" resultType="java.lang.Long">
+		SELECT PROFESSOR_ID
+		FROM KURS_PROFESSOR
+		WHERE KURS_ID = #{kursId}
+	</select>
+	
+	<select id="selectKursStudentByKursAndStudentId" resultType="java.lang.Long">
+		SELECT COUNT(*)
+		FROM KURS_STUDENT
+		WHERE KURS_ID = #{kursId} AND STUDENT_ID = #{studentId}
+	</select>
+	
+	<select id="selectStudentIdsFromKursStudentByKursId" resultType="java.lang.Long">
+		SELECT STUDENT_ID
+		FROM KURS_STUDENT
+		WHERE KURS_ID = #{kursId}
+	</select>
+	
+		
+	<!-- Insert -->
+	<insert id="insertKurs" parameterType="Kurs">
+		INSERT INTO KURS (KURS_ID, KURS_TITEL, ABKUERZUNG, LEISTUNGSPUNKTE, VERANSTALTUNGSFORM, TURNUS, KENNWORT)
+		VALUES (#{kursId},#{title},#{abkuerzung},#{leistungspunkte},#{veranstaltungsform},#{turnus}, #{kennwort})
+	</insert>
+	
+	<insert id="insertStudentInKursStudent">
+		INSERT INTO KURS_STUDENT (KURS_ID, STUDENT_ID)
+		VALUES (#{kursId},#{studentId})
+	</insert>
+	
+	<insert id="insertProfessorInKursStudent">
+		INSERT INTO KURS_PROFESSOR (KURS_ID, PROFESSOR_ID)
+		VALUES (#{kursId},#{professorId})
+	</insert>
+	
+	<!-- Update -->
+	<update id="updateKurs" parameterType="Kurs">	
+		UPDATE KURS 
+        SET KURS_ID = #{kursId}, KURS_TITEL = #{title}, ABKUERZUNG = #{abkuerzung}, 
+		LEISTUNGSPUNKTE = #{leistungspunkte}, VERANSTALTUNGSFORM = #{veranstaltungsform}, TURNUS = #{turnus}, Kennwort = #{kennwort}
+	</update>
+	
+	<!-- Delete -->
+	<delete id="deleteKurs" parameterType="java.lang.String">
+		DELETE FROM KURS where KURS_ID = #{kursId}
+	</delete>
+	
+	<delete id="deleteKursProfessor" parameterType="java.lang.String">
+		DELETE FROM KURS_PROFESSOR where KURS_ID = #{kursId}
+	</delete>
+</mapper>
