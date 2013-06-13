@@ -81,8 +81,8 @@
 		<mdElement elementClass='ChoiceProperty'>
 			<propertyID>DEFAULT_SOURCE_PATH</propertyID>
 			<propertyDescriptionID>DEFAULT_SOURCE_PATH_DESCRIPTION</propertyDescriptionID>
-			<value>C:/Abschlussarbeit/workspace/LoginSystem/src/main/java</value>
-			<choice xmi:value='C:/Abschlussarbeit/workspace/LoginSystem/src/main/java^C:/Abschlussarbeit/workspace/LoginSystem/src/main/resources^C:/Abschlussarbeit/workspace/LoginSystem/src/test/java'/>
+			<value>C:/Abschlussarbeit/workspace/StudentanmeldeSystem/src/main/java</value>
+			<choice xmi:value='C:/Abschlussarbeit/workspace/StudentanmeldeSystem/src/main/java^C:/Abschlussarbeit/workspace/StudentanmeldeSystem/src/main/resources^C:/Abschlussarbeit/workspace/StudentanmeldeSystem/src/test/java'/>
 			<index xmi:value='-1'/>
 		</mdElement>
 		<mdElement elementClass='BooleanProperty'>
