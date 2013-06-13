@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.studentloginsystem</groupId>
-	<artifactId>studentloginsystem-webapp</artifactId>
+	<groupId>StudentanmeldeSystem</groupId>
+	<artifactId>studentanmeldesystem-webapp</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Student Login System</name>
+	<name>Student Anmelde System</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -222,7 +222,7 @@
 
 	<build>
 		<!-- <directory>C:/Abschlussarbeit/Apps/apache-tomcat-7.0.37/webapps/${project.build.finalName}</directory> -->
-		<finalName>LoginSystem</finalName>
+		<finalName>StudentanmeldeSystem</finalName>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<testSourceDirectory>src/test/java</testSourceDirectory>
 		<resources>
@@ -260,7 +260,7 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.3</version>
 				<configuration>
-					<webappDirectory>target/LoginSystem</webappDirectory>
+					<webappDirectory>target/StudentanmeldeSystem</webappDirectory>
 				</configuration>
 			</plugin>
 		</plugins>

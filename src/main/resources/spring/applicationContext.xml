@@ -66,7 +66,7 @@
 
 	<!-- scan mappers and let them be autowired -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="spring.webapp.loginsystem.persistence.mapper" />
+		<property name="basePackage" value="spring.webapp.anmeldesystem.persistence.mapper" />
 	</bean>
 
 
@@ -85,6 +85,6 @@
 		as Spring beans. For example @Controller @resourceand and @Service. Make 
 		sure to set the correct base-package -->
 	<context:component-scan
-		base-package="spring.webapp.loginsystem.service, spring.webapp.loginsystem.controller, spring.webapp.loginsystem.persistence.dao" />
+		base-package="spring.webapp.anmeldesystem.service, spring.webapp.anmeldesystem.controller, spring.webapp.anmeldesystem.persistence.dao" />
 
 </beans>

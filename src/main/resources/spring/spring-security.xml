@@ -36,7 +36,7 @@
 		</authentication-provider>
 	</authentication-manager>
 
-	<beans:bean id="authSuccessHandler" class="spring.webapp.loginsystem.service.impl.CustomAuthenticationSuccessHandlerImpl" />
+	<beans:bean id="authSuccessHandler" class="spring.webapp.anmeldesystem.service.impl.CustomAuthenticationSuccessHandlerImpl" />
 
 
 </beans:beans>

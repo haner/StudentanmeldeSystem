@@ -8,19 +8,19 @@
 	</settings>
 
 	<typeAliases>
-		<typeAlias alias="Student" type="spring.webapp.loginsystem.entity.Student" />
+		<typeAlias alias="Student" type="spring.webapp.anmeldesystem.entity.Student" />
 		<typeAlias alias="Professor"
-			type="spring.webapp.loginsystem.entity.Professor" />
-		<typeAlias alias="Kurs" type="spring.webapp.loginsystem.entity.Kurs" />
+			type="spring.webapp.anmeldesystem.entity.Professor" />
+		<typeAlias alias="Kurs" type="spring.webapp.anmeldesystem.entity.Kurs" />
 		<typeAlias alias="Fachbereich"
-			type="spring.webapp.loginsystem.entity.Fachbereich" />
+			type="spring.webapp.anmeldesystem.entity.Fachbereich" />
 		<typeAlias alias="Professor"
-			type="spring.webapp.loginsystem.entity.Professor" />
-		<typeAlias alias="Datei" type="spring.webapp.loginsystem.entity.Datei" />
+			type="spring.webapp.anmeldesystem.entity.Professor" />
+		<typeAlias alias="Datei" type="spring.webapp.anmeldesystem.entity.Datei" />
 		<typeAlias alias="DateiKursProfessor"
-			type="spring.webapp.loginsystem.entity.DateiKursProfessor" />
+			type="spring.webapp.anmeldesystem.entity.DateiKursProfessor" />
 		<typeAlias alias="Fachbereich"
-			type="spring.webapp.loginsystem.entity.Fachbereich" />
+			type="spring.webapp.anmeldesystem.entity.Fachbereich" />
 	</typeAliases>
 
 	<mappers>

@@ -12,13 +12,13 @@
 	<!-- For parsing classes with @Aspect annotation -->
 	<aop:aspectj-autoproxy/>
 
-	<bean id="customizableTraceInterceptor" class="spring.webapp.loginsystem.aop.TraceInterceptor"
+	<bean id="customizableTraceInterceptor" class="spring.webapp.anmeldesystem.aop.TraceInterceptor"
 		p:enterMessage="Entering $[targetClassShortName].$[methodName]($[arguments])"
 		p:exitMessage="Leaving $[targetClassShortName].$[methodName](): $[returnValue]"/>
 
 	<aop:config>
-	  <aop:advisor advice-ref="customizableTraceInterceptor" pointcut="execution(public * spring.webapp.loginsystem.service..*(..))"/>
-	  <aop:advisor advice-ref="customizableTraceInterceptor" pointcut="execution(public * spring.webapp.loginsystem.controller..*(..))"/>
+	  <aop:advisor advice-ref="customizableTraceInterceptor" pointcut="execution(public * spring.webapp.anmeldesystem.service..*(..))"/>
+	  <aop:advisor advice-ref="customizableTraceInterceptor" pointcut="execution(public * spring.webapp.anmeldesystem.controller..*(..))"/>
 	</aop:config>
 
 </beans>
