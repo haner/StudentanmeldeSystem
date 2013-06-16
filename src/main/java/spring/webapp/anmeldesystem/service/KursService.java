@@ -41,7 +41,7 @@ public interface KursService {
 	 * @param kurs
 	 * @param professorId
 	 */
-	void addKurs(Kurs kurs, long professorId);
+	void addKurs(Kurs kurs, long professorId, long fbId);
 	
 	/**
 	 * @param kursId

@@ -64,12 +64,13 @@ public class KursDaoImpl implements KursDao {
 	 * @param professorId
 	 */
 	@Override
-	public void addKurs(Kurs kurs, long professorId) {
+	public void addKurs(Kurs kurs, long professorId, long fbId) {
 		String kursId = kurs.getKursId();
 		Kurs kursDB = kursMapper.selectKursByKursId(kursId);
 		if(kursDB==null){
 			kursMapper.insertKurs(kurs);
 			kursMapper.insertProfessorInKursStudent(kursId, professorId);
+			kursMapper.insertKursInKURSFachbereich(kursId,fbId);
 		}else{
 			kursMapper.updateKurs(kurs);
 		}		

@@ -47,4 +47,9 @@ public interface DateiMapper {
 	 * @param dateiId
 	 */
 	void deleteDatei(long dateiId);
+	/**
+	 * 
+	 * @param dateiId
+	 */
+	void deleteDateiFromDateiKursProfessor(long dateiId);
 }

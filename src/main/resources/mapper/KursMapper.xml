@@ -67,6 +67,11 @@
 		VALUES (#{kursId},#{professorId})
 	</insert>
 	
+	<insert id="insertKursInKURSFachbereich">
+		INSERT INTO KURS_FACHBEREICH (KURS_ID, FB_ID)
+		VALUES (#{kursId},#{fbId})
+	</insert>
+	
 	<!-- Update -->
 	<update id="updateKurs" parameterType="Kurs">	
 		UPDATE KURS 

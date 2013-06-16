@@ -169,7 +169,10 @@ public class KursController {
 			Principal principal) {
 		Professor professor = professorService
 				.getProfessorInformationen(principal.getName());
-		kursService.addKurs(kurs, professor.getId());
+		List<Fachbereich> fblist = professor.getFachbereich();
+		for (Fachbereich fachbereich : fblist) {
+			kursService.addKurs(kurs, professor.getId(), fachbereich.getFachId());
+        } 
 		return "redirect:/courses";
 	}
 

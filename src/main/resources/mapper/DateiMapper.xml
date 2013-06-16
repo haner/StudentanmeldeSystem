@@ -59,6 +59,11 @@
 	<!-- Delete -->
 	<delete id="deleteDatei" parameterType="java.lang.Long">
 		DELETE from DATEI where
-		ID = #{id}
+		ID = #{dateiId}
+	</delete>
+	
+	<delete id="deleteDateiFromDateiKursProfessor" parameterType="java.lang.Long">
+		DELETE from DATAI_KURS_PROFESSOR WHERE
+		DATEI_ID = #{dateiId}
 	</delete>
 </mapper>

@@ -58,6 +58,9 @@ public interface KursMapper {
 	 * @param kurs
 	 */
 	void insertKurs(Kurs kurs);
+	
+	void insertKursInKURSFachbereich(@Param("kursId") String kursId,
+			@Param("fbId") long fbId);
 
 	/**
 	 * 

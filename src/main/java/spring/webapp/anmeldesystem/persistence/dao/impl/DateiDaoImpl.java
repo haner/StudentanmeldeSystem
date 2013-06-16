@@ -52,6 +52,7 @@ public class DateiDaoImpl implements DateiDao {
 	@Override
 	public void deleteDateiByDateiId(long dateiId) {
 		dateiMapper.deleteDatei(dateiId);
+		dateiMapper.deleteDateiFromDateiKursProfessor(dateiId);
 	}
 
 	/**

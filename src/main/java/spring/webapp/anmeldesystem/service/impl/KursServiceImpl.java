@@ -27,7 +27,7 @@ public class KursServiceImpl implements KursService {
 
 	/**
 	 * @param kursId
-	 * @return 
+	 * @return
 	 */
 	@Override
 	public Kurs getKursById(String kursId) {
@@ -35,7 +35,7 @@ public class KursServiceImpl implements KursService {
 	}
 
 	/**
-	 * @return 
+	 * @return
 	 */
 	@Override
 	public List<Kurs> getKurse() {
@@ -48,15 +48,16 @@ public class KursServiceImpl implements KursService {
 	 */
 	@Override
 	public void addStudentIntoKursStudent(String kursId, long studentId) {
-		ArrayList<Long> studentIds = kursDao.getStudentIdFromKursStudent(kursId);
-		if(studentIds == null || studentIds.isEmpty() ){
+		ArrayList<Long> studentIds = kursDao
+				.getStudentIdFromKursStudent(kursId);
+		if (studentIds == null || studentIds.isEmpty()) {
 			kursDao.addStudentIntoKursStudent(kursId, studentId);
 		}
 	}
 
 	/**
 	 * @param kursId
-	 * @return 
+	 * @return
 	 */
 	@Override
 	public ArrayList<Long> getStudentIdsFromKursStudent(String kursId) {
@@ -68,8 +69,8 @@ public class KursServiceImpl implements KursService {
 	 * @param professorId
 	 */
 	@Override
-	public void addKurs(Kurs kurs, long professorId) {
-		kursDao.addKurs(kurs, professorId);
+	public void addKurs(Kurs kurs, long professorId, long fbId) {
+		kursDao.addKurs(kurs, professorId, fbId);
 	}
 
 	/**
@@ -77,12 +78,12 @@ public class KursServiceImpl implements KursService {
 	 */
 	@Override
 	public void deleteKurs(String kursId) {
-		kursDao.deleteKurs(kursId);	
+		kursDao.deleteKurs(kursId);
 	}
 
 	/**
 	 * @param fachbreichId
-	 * @return 
+	 * @return
 	 */
 	@Override
 	public ArrayList<Kurs> getKurseInFB(long fachbreichId) {
